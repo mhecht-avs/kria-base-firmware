@@ -57,6 +57,50 @@
 				interrupt-parent = <&gic>;
 				interrupts = <0 89 4>;
 				reg = <0x0 0x80000000 0x0 0x10000>;
+				avt_camera_ias@3c {
+					compatible = "alliedvision,avt3"; /*"alliedvision,avt_csi2";*/
+
+					reg = <0x3c>;
+					csi_id = <0>;
+
+					/* powerdown-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
+					reset-gpios = <&axi_gpio_0 4 GPIO_ACTIVE_LOW>; */
+					
+					bcrm_wait_timeout = <5111>; /*<4000>;*/
+					mipi_csi;
+					status = "okay";
+
+					streamon_delay = <100>; 
+					x_force_reset_on_init;
+					
+					avt-ignore-yuv420_8_leg_avail;
+					avt-ignore-yuv420_8_avail;
+					avt-ignore-yuv420_10_avail;
+					avt-ignore-yuv420_8_csps_avail;
+					avt-ignore-yuv420_10_csps_avail;
+					x_avt-ignore-yuv422_8_avail;
+					avt-ignore-yuv422_10_avail;
+					x_avt-ignore-rgb888_avail;
+					avt-ignore-rgb666_avail;
+					avt-ignore-rgb565_avail;
+					avt-ignore-rgb555_avail;
+					avt-ignore-rgb444_avail;
+					avt-ignore-raw6_avail;
+					avt-ignore-raw7_avail;
+					x_avt-ignore-raw8_avail;
+					x_avt-ignore-raw10_avail;
+					avt-ignore-raw12_avail;
+					avt-ignore-raw14_avail;
+
+					port {
+						sensor_out_ias: endpoint {
+							/*remote-endpoint = <&ias_csiss_in>;*/
+							data-lanes = <1 2 3 4>;
+							clock-lanes = <0>;
+							link-frequencies = /bits/ 64 <750000000 500000000>;
+						};
+					};
+				};
 			};
 		};
 	};
