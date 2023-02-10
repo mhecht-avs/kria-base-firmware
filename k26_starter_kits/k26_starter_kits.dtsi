@@ -47,6 +47,7 @@
 		overlay2: __overlay__ {
 			#address-cells = <2>;
 			#size-cells = <2>;
+
 			axi_iic_0: i2c@80000000 {
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -57,6 +58,7 @@
 				interrupt-parent = <&gic>;
 				interrupts = <0 89 4>;
 				reg = <0x0 0x80000000 0x0 0x10000>;
+				
 				avt_camera_ias@3c {
 					compatible = "alliedvision,avt3"; /*"alliedvision,avt_csi2";*/
 
