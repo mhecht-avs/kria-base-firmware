@@ -65,7 +65,7 @@
 			mipi_csi2rxss_0: mipi_csi2_rx_subsystem@80000000 {
 				clock-names = "lite_aclk", "dphy_clk_200M", "video_aclk";
 				clocks = <&zynqmp_clk 71>, <&misc_clk_0>, <&zynqmp_clk 72>;
-				compatible = "xlnx,mipi-csi2-rx-subsystem-5.1";
+				fragment@0compatible = "xlnx,mipi-csi2-rx-subsystem-5.1";
 				interrupt-names = "csirxss_csi_irq";
 				interrupt-parent = <&gic>;
 				interrupts = <0 90 4>;
@@ -210,11 +210,11 @@
 			};
 		};
 	};
-};
-
-&vcap_mipi_csi2rxss_0 {
-	vcap_mipi_csi2rxss_0 {
-		status = "okay";
-		dma-coherent;
+	fragment@4 {
+		&vcap_mipi_csi2rxss_0 {
+			status = "okay";
+			dma-coherent;
+		};
 	};
 };
+
