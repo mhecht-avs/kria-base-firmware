@@ -194,6 +194,8 @@
 			};
 			vcap_mipi_csi2rxss_0 {
 				compatible = "xlnx,video";
+				status = "okay";
+				dma-coherent;
 				dma-names = "port0";
 				dmas = <&v_frmbuf_wr_csi_0 0>;
 				vcap_portsmipi_csi2rxss_0: ports {
@@ -208,12 +210,6 @@
 					};
 				};
 			};
-		};
-	};
-	fragment@4 {
-		&vcap_mipi_csi2rxss_0 {
-			status = "okay";
-			dma-coherent;
 		};
 	};
 };
