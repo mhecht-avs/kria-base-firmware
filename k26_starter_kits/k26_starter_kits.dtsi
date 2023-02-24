@@ -128,7 +128,7 @@
 							avt-ignore-raw14_avail;
 
 							port {
-								sensor_out_0: endpoint {
+								sensor_out_2: endpoint {
 									/*remote-endpoint = <&mipi_csi_inmipi_csi2rxss_0>;*/
 									data-lanes = <1 2 3 4>;
 									clock-lanes = <0>;
