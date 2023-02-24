@@ -349,7 +349,6 @@
 							data-lanes = <1 2 3 4>;
 							remote-endpoint = <&sensor_out_0>;
 						};
-						};
 					};
 				};
 			};
