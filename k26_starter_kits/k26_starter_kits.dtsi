@@ -103,7 +103,7 @@
 							
 							bcrm_wait_timeout = <5222>; /*<4000>;*/
 							mipi_csi;
-							status = "okay";
+							status = "disabled";
 
 							streamon_delay = <102>; 
 							x_force_reset_on_init;
@@ -211,7 +211,7 @@
 					
 					bcrm_wait_timeout = <5001>; /*<4000>;*/
 					mipi_csi;
-					status = "okay";
+					status = "disabled";
 
 					streamon_delay = <101>; 
 					x_force_reset_on_init;
@@ -263,7 +263,7 @@
 				xlnx,csi-en-crc = "true";
 				xlnx,csi-filter-userdatatype = "true";
 				xlnx,csi-opt1-regs = "false";
-				xlnx,csi-pxl-format = "YUV422_8bit";
+				xlnx,csi-pxl-format = XCSI_DT_YUV4228B;//"YUV422_8bit";MIPI_CSI2_DT_YUV422_8B
 				xlnx,csi2rx-dbg = <0x0>;
 				xlnx,data-lane0-io-position = <0xf>;
 				xlnx,data-lane1-io-position = <0x11>;
@@ -280,6 +280,7 @@
 				xlnx,dphy-lanes = <0x4>;
 				xlnx,dphy-mode = "SLAVE";
 				xlnx,dphy-present ;
+				/*
 				xlnx,en-7s-linerate-check = "false";
 				xlnx,en-active-lanes ;
 				xlnx,en-bg0-pin0 = "false";
@@ -304,6 +305,7 @@
 				xlnx,exdes-fmc = "LI-IMX274MIPI-FMC V1.0 Single Sensor";
 				xlnx,exdesboard-version = <0x2>;
 				xlnx,fifo-rd-en-control = "true";
+				*/
 				xlnx,hs-line-rate = <0x2ee>;
 				xlnx,hs-settle-ns = <0x94>;
 				xlnx,hs-timeout = <0x10005>;
