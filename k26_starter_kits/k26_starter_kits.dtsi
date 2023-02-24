@@ -90,7 +90,7 @@
 					i2c@0 {
 						#address-cells = <1>;
 						#size-cells = <0>;
-						reg = <1>;
+						reg = <0>;
 
 						avt_camera_2@3c {
 							compatible = "alliedvision,avt3";
