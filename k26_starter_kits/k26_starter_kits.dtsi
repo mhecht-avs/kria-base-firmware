@@ -246,7 +246,6 @@
 				};
 			};
 
-			};
 			mipi_csi2rxss_0: mipi_csi2_rx_subsystem@80000000 {
 				clock-names = "lite_aclk", "dphy_clk_200M", "video_aclk";
 				clocks = <&zynqmp_clk 71>, <&misc_clk_0>, <&zynqmp_clk 72>;
