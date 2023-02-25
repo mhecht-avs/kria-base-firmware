@@ -263,7 +263,7 @@
 				xlnx,csi-en-crc = "true";
 				xlnx,csi-filter-userdatatype = "true";
 				xlnx,csi-opt1-regs = "false";
-				xlnx,csi-pxl-format = XCSI_DT_YUV4228B;/*"YUV422_8bit";MIPI_CSI2_DT_YUV422_8B */
+				xlnx,csi-pxl-format = MIPI_CSI2_DT_YUV422_8B;/*"YUV422_8bit"; */
 				xlnx,csi2rx-dbg = <0x0>;
 				xlnx,data-lane0-io-position = <0xf>;
 				xlnx,data-lane1-io-position = <0x11>;
