@@ -73,6 +73,7 @@
 			axi_iic_0: i2c@80010000 {
 				#address-cells = <1>;
 				#size-cells = <0>;
+				status = "okay";
 				clock-names = "s_axi_aclk";
 				clocks = <&zynqmp_clk 71>;
 				compatible = "xlnx,axi-iic-2.1", "xlnx,xps-iic-2.00.a";
@@ -87,111 +88,23 @@
 					#size-cells = <0>;
 					reg = <0x74>;
 
-					i2c@0 {
+/*					i2c@0 {
 						#address-cells = <1>;
 						#size-cells = <0>;
 						reg = <0>;
-
-						avt_camera_2@3c {
-							compatible = "alliedvision,avt3";
-
-							reg = <0x3c>;
-							csi_id = <2>;
-
-							/* powerdown-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-							reset-gpios = <&axi_gpio_0 4 GPIO_ACTIVE_LOW>; */
-							
-							bcrm_wait_timeout = <5222>; /*<4000>;*/
-							mipi_csi;
-							status = "disabled";
-
-							streamon_delay = <102>; 
-							x_force_reset_on_init;
-							
-							avt-ignore-yuv420_8_leg_avail;
-							avt-ignore-yuv420_8_avail;
-							avt-ignore-yuv420_10_avail;
-							avt-ignore-yuv420_8_csps_avail;
-							avt-ignore-yuv420_10_csps_avail;
-							x_avt-ignore-yuv422_8_avail;
-							avt-ignore-yuv422_10_avail;
-							avt-ignore-rgb888_avail;
-							avt-ignore-rgb666_avail;
-							avt-ignore-rgb565_avail;
-							avt-ignore-rgb555_avail;
-							avt-ignore-rgb444_avail;
-							avt-ignore-raw6_avail;
-							avt-ignore-raw7_avail;
-							avt-ignore-raw8_avail;
-							avt-ignore-raw10_avail;
-							avt-ignore-raw12_avail;
-							avt-ignore-raw14_avail;
-
-							port {
-								sensor_out_2: endpoint {
-									/*remote-endpoint = <&mipi_csi_inmipi_csi2rxss_0>;*/
-									data-lanes = <1 2 3 4>;
-									clock-lanes = <0>;
-									link-frequencies = /bits/ 64 <750000000>;
-								};
-							};
-						};
 					};
+
 					i2c@1 {
 						#address-cells = <1>;
 						#size-cells = <0>;
 						reg = <1>;
-
-						avt_camera_0@3c {
-							compatible = "alliedvision,avt3";
-
-							reg = <0x3c>;
-							csi_id = <0>;
-
-							/* powerdown-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-							reset-gpios = <&axi_gpio_0 4 GPIO_ACTIVE_LOW>; */
-							
-							bcrm_wait_timeout = <5000>; /*<4000>;*/
-							mipi_csi;
-							status = "okay";
-
-							streamon_delay = <100>; 
-							x_force_reset_on_init;
-							
-							avt-ignore-yuv420_8_leg_avail;
-							avt-ignore-yuv420_8_avail;
-							avt-ignore-yuv420_10_avail;
-							avt-ignore-yuv420_8_csps_avail;
-							avt-ignore-yuv420_10_csps_avail;
-							x_avt-ignore-yuv422_8_avail;
-							avt-ignore-yuv422_10_avail;
-							avt-ignore-rgb888_avail;
-							avt-ignore-rgb666_avail;
-							avt-ignore-rgb565_avail;
-							avt-ignore-rgb555_avail;
-							avt-ignore-rgb444_avail;
-							avt-ignore-raw6_avail;
-							avt-ignore-raw7_avail;
-							avt-ignore-raw8_avail;
-							avt-ignore-raw10_avail;
-							avt-ignore-raw12_avail;
-							avt-ignore-raw14_avail;
-
-							port {
-								sensor_out_0: endpoint {
-									remote-endpoint = <&mipi_csi_inmipi_csi2rxss_0>;
-									data-lanes = <1 2 3 4>;
-									clock-lanes = <0>;
-									link-frequencies = /bits/ 64 <750000000>;
-								};
-							};
-						};
-					};
+					};*/
 				};
 			};
 			axi_iic_pmod: i2c@80020000 {
 				#address-cells = <1>;
 				#size-cells = <0>;
+				status = "disabled";
 				clock-names = "s_axi_aclk";
 				clocks = <&zynqmp_clk 71>;
 				compatible = "xlnx,axi-iic-2.1", "xlnx,xps-iic-2.00.a";
@@ -199,54 +112,10 @@
 				interrupt-parent = <&gic>;
 				interrupts = <0 92 4>;
 				reg = <0x0 0x80020000 0x0 0x10000>;
-
-				avt_camera_1@3c {
-					compatible = "alliedvision,avt3";
-
-					reg = <0x3c>;
-					csi_id = <1>;
-
-					/* powerdown-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-					reset-gpios = <&axi_gpio_0 4 GPIO_ACTIVE_LOW>; */
-					
-					bcrm_wait_timeout = <5001>; /*<4000>;*/
-					mipi_csi;
-					status = "disabled";
-
-					streamon_delay = <101>; 
-					x_force_reset_on_init;
-					
-					avt-ignore-yuv420_8_leg_avail;
-					avt-ignore-yuv420_8_avail;
-					avt-ignore-yuv420_10_avail;
-					avt-ignore-yuv420_8_csps_avail;
-					avt-ignore-yuv420_10_csps_avail;
-					x_avt-ignore-yuv422_8_avail;
-					avt-ignore-yuv422_10_avail;
-					avt-ignore-rgb888_avail;
-					avt-ignore-rgb666_avail;
-					avt-ignore-rgb565_avail;
-					avt-ignore-rgb555_avail;
-					avt-ignore-rgb444_avail;
-					avt-ignore-raw6_avail;
-					avt-ignore-raw7_avail;
-					avt-ignore-raw8_avail;
-					avt-ignore-raw10_avail;
-					avt-ignore-raw12_avail;
-					avt-ignore-raw14_avail;
-
-					port {
-						sensor_out_1: endpoint {
-							/*remote-endpoint = <&mipi_csi_inmipi_csi2rxss_1>;*/
-							data-lanes = <1 2 3 4>;
-							clock-lanes = <0>;
-							link-frequencies = /bits/ 64 <750000000>;
-						};
-					};
-				};
 			};
 
 			mipi_csi2rxss_0: mipi_csi2_rx_subsystem@80000000 {
+				status = "okay";
 				clock-names = "lite_aclk", "dphy_clk_200M", "video_aclk";
 				clocks = <&zynqmp_clk 71>, <&misc_clk_0>, <&zynqmp_clk 72>;
 				compatible = "xlnx,mipi-csi2-rx-subsystem-5.1";
@@ -255,17 +124,17 @@
 				interrupts = <0 90 4>;
 				reg = <0x0 0x80000000 0x0 0x2000>;
 				xlnx,axis-tdata-width = <32>;
-				xlnx,cal-mode = "NONE";
+/*				xlnx,cal-mode = "NONE";
 				xlnx,clk-io-swap = "false";
 				xlnx,clk-lane-io-position = <0xd>;
 				xlnx,clk-lp-io-swap = "false";
 				xlnx,csi-en-activelanes = "true";
 				xlnx,csi-en-crc = "true";
 				xlnx,csi-filter-userdatatype = "true";
-				xlnx,csi-opt1-regs = "false";
+				xlnx,csi-opt1-regs = "false";*/
 				xlnx,csi-pxl-format = < MIPI_CSI2_DT_YUV422_8B >;/*"YUV422_8bit"; */
 				xlnx,csi2rx-dbg = <0x0>;
-				xlnx,data-lane0-io-position = <0xf>;
+/*				xlnx,data-lane0-io-position = <0xf>;
 				xlnx,data-lane1-io-position = <0x11>;
 				xlnx,data-lane2-io-position = <0x13>;
 				xlnx,data-lane3-io-position = <0x15>;
@@ -279,7 +148,7 @@
 				xlnx,dl3-lp-io-swap = "false";
 				xlnx,dphy-lanes = <0x4>;
 				xlnx,dphy-mode = "SLAVE";
-				xlnx,dphy-present ;
+				xlnx,dphy-present ;*/
 				/*
 				xlnx,en-7s-linerate-check = "false";
 				xlnx,en-active-lanes ;
@@ -312,13 +181,13 @@
 				xlnx,idly-group-name = "mipi_csi2rx_idly_group";
 				xlnx,idly-tap = <0x1>;
 				xlnx,init = <0x186a0>;
-				xlnx,int-qor-check = <0x0>;
+/*				xlnx,int-qor-check = <0x0>;
 				xlnx,is-7series = "false";
 				xlnx,is-versal = "false";
 				xlnx,lprx-disable-extport = <0x0>;
 				xlnx,max-lanes = <4>;
 				xlnx,mipi-slv-int = <0x0>;
-				xlnx,ooc-vid-clk = "6.666";
+				xlnx,ooc-vid-clk = "6.666";*/
 				xlnx,ppc = <1>;
 				xlnx,rcve-alt-deskew-seq = "false";
 				xlnx,rcve-deskew-seq = "false";
@@ -391,6 +260,70 @@
 						reg = <0>;
 						v_frmbuf_wr_csi_0mipi_csi2rxss_0: endpoint {
 							remote-endpoint = <&mipi_csirx_outmipi_csi2rxss_0>;
+						};
+					};
+				};
+			};
+		};
+	fragment@3 {
+		target = <&axi_iic_0>;
+		overlay3: __overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			i2c_mux: i2c-mux@74 {
+				compatible = "nxp,pca9546";
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <0x74>;
+
+				i2c@1 {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					reg = <1>;
+
+					avt_camera_0@3c {
+						compatible = "alliedvision,avt3";
+
+						reg = <0x3c>;
+						csi_id = <0>;
+
+						/* powerdown-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
+						reset-gpios = <&axi_gpio_0 4 GPIO_ACTIVE_LOW>; */
+						
+						bcrm_wait_timeout = <5000>; /*<4000>;*/
+						mipi_csi;
+						status = "okay";
+
+						streamon_delay = <100>; 
+						x_force_reset_on_init;
+						
+						avt-ignore-yuv420_8_leg_avail;
+						avt-ignore-yuv420_8_avail;
+						avt-ignore-yuv420_10_avail;
+						avt-ignore-yuv420_8_csps_avail;
+						avt-ignore-yuv420_10_csps_avail;
+						x_avt-ignore-yuv422_8_avail;
+						avt-ignore-yuv422_10_avail;
+						avt-ignore-rgb888_avail;
+						avt-ignore-rgb666_avail;
+						avt-ignore-rgb565_avail;
+						avt-ignore-rgb555_avail;
+						avt-ignore-rgb444_avail;
+						avt-ignore-raw6_avail;
+						avt-ignore-raw7_avail;
+						avt-ignore-raw8_avail;
+						avt-ignore-raw10_avail;
+						avt-ignore-raw12_avail;
+						avt-ignore-raw14_avail;
+
+						port {
+							sensor_out_0: endpoint {
+								remote-endpoint = <&mipi_csi_inmipi_csi2rxss_0>;
+								data-lanes = <1 2 3 4>;
+								clock-lanes = <0>;
+								link-frequencies = /bits/ 64 <750000000>;
+							};
 						};
 					};
 				};
