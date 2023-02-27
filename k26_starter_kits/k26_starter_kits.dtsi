@@ -70,6 +70,42 @@
 		overlay2: __overlay__ {
 			#address-cells = <2>;
 			#size-cells = <2>;
+			v_frmbuf_wr_csi_0: v_frmbuf_wr@a0000000 {
+				#dma-cells = <1>;
+				clock-names = "ap_clk";
+				clocks = <&zynqmp_clk 72>;
+				compatible = "xlnx,v-frmbuf-wr-2.4", "xlnx,axi-frmbuf-wr-v2.1";
+				interrupt-names = "interrupt";
+				interrupt-parent = <&gic>;
+				interrupts = <0 91 4>;
+				reg = <0x0 0xa0000000 0x0 0x10000>;
+				reset-gpios = <&gpio 78 1>;
+				xlnx,dma-addr-width = <32>;
+				xlnx,dma-align = <8>;
+				xlnx,max-height = <4096>;
+				xlnx,max-width = <8192>;
+				xlnx,pixels-per-clock = <1>;
+				xlnx,s-axi-ctrl-addr-width = <0x7>;
+				xlnx,s-axi-ctrl-data-width = <0x20>;
+				xlnx,vid-formats = "uyvy", "y8", "yuyv";
+				xlnx,video-width = <8>;
+			};
+			vcap_mipi_csi2rxss_0 {
+				compatible = "xlnx,video";
+				dma-names = "port0";
+				dmas = <&v_frmbuf_wr_csi_0 0>;
+				vcap_portsmipi_csi2rxss_0: ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					vcap_portmipi_csi2rxss_0: port@0 {
+						direction = "input";
+						reg = <0>;
+						v_frmbuf_wr_csi_0mipi_csi2rxss_0: endpoint {
+							remote-endpoint = <&mipi_csirx_outmipi_csi2rxss_0>;
+						};
+					};
+				};
+			};
 			axi_iic_0: i2c@80010000 {
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -83,6 +119,7 @@
 				reg = <0x0 0x80010000 0x0 0x10000>;
 
 				i2c_mux: i2c-mux@74 {
+					status = "okay";
 					compatible = "nxp,pca9546";
 					#address-cells = <1>;
 					#size-cells = <0>;
@@ -92,13 +129,58 @@
 						#address-cells = <1>;
 						#size-cells = <0>;
 						reg = <0>;
-					};
+					}; */
 
 					i2c@1 {
 						#address-cells = <1>;
 						#size-cells = <0>;
 						reg = <1>;
-					};*/
+
+						avt_camera_0@3c {
+							compatible = "alliedvision,avt3";
+
+							reg = <0x3c>;
+							csi_id = <0>;
+
+							/* powerdown-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
+							reset-gpios = <&axi_gpio_0 4 GPIO_ACTIVE_LOW>; */
+							
+							bcrm_wait_timeout = <5000>; /*<4000>;*/
+							mipi_csi;
+							status = "okay";
+
+							streamon_delay = <100>; 
+							x_force_reset_on_init;
+							
+							avt-ignore-yuv420_8_leg_avail;
+							avt-ignore-yuv420_8_avail;
+							avt-ignore-yuv420_10_avail;
+							avt-ignore-yuv420_8_csps_avail;
+							avt-ignore-yuv420_10_csps_avail;
+							x_avt-ignore-yuv422_8_avail;
+							avt-ignore-yuv422_10_avail;
+							avt-ignore-rgb888_avail;
+							avt-ignore-rgb666_avail;
+							avt-ignore-rgb565_avail;
+							avt-ignore-rgb555_avail;
+							avt-ignore-rgb444_avail;
+							avt-ignore-raw6_avail;
+							avt-ignore-raw7_avail;
+							avt-ignore-raw8_avail;
+							avt-ignore-raw10_avail;
+							avt-ignore-raw12_avail;
+							avt-ignore-raw14_avail;
+
+							port {
+								sensor_out_0: endpoint {
+									remote-endpoint = <&mipi_csi_inmipi_csi2rxss_0>;
+									data-lanes = <1 2 3 4>;
+									clock-lanes = <0>;
+									link-frequencies = /bits/ 64 <750000000>;
+								};
+							};
+						};
+					};
 				};
 			};
 			axi_iic_pmod: i2c@80020000 {
@@ -227,106 +309,6 @@
 				#clock-cells = <0>;
 				clock-frequency = <199998000>;
 				compatible = "fixed-clock";
-			};
-			v_frmbuf_wr_csi_0: v_frmbuf_wr@a0000000 {
-				#dma-cells = <1>;
-				clock-names = "ap_clk";
-				clocks = <&zynqmp_clk 72>;
-				compatible = "xlnx,v-frmbuf-wr-2.4", "xlnx,axi-frmbuf-wr-v2.1";
-				interrupt-names = "interrupt";
-				interrupt-parent = <&gic>;
-				interrupts = <0 91 4>;
-				reg = <0x0 0xa0000000 0x0 0x10000>;
-				reset-gpios = <&gpio 78 1>;
-				xlnx,dma-addr-width = <32>;
-				xlnx,dma-align = <8>;
-				xlnx,max-height = <4096>;
-				xlnx,max-width = <8192>;
-				xlnx,pixels-per-clock = <1>;
-				xlnx,s-axi-ctrl-addr-width = <0x7>;
-				xlnx,s-axi-ctrl-data-width = <0x20>;
-				xlnx,vid-formats = "uyvy", "y8", "yuyv";
-				xlnx,video-width = <8>;
-			};
-			vcap_mipi_csi2rxss_0 {
-				compatible = "xlnx,video";
-				dma-names = "port0";
-				dmas = <&v_frmbuf_wr_csi_0 0>;
-				vcap_portsmipi_csi2rxss_0: ports {
-					#address-cells = <1>;
-					#size-cells = <0>;
-					vcap_portmipi_csi2rxss_0: port@0 {
-						direction = "input";
-						reg = <0>;
-						v_frmbuf_wr_csi_0mipi_csi2rxss_0: endpoint {
-							remote-endpoint = <&mipi_csirx_outmipi_csi2rxss_0>;
-						};
-					};
-				};
-			};
-		};
-	fragment@3 {
-		target = <&axi_iic_0>;
-		overlay3: __overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			i2c_mux: i2c-mux@74 {
-				compatible = "nxp,pca9546";
-				#address-cells = <1>;
-				#size-cells = <0>;
-				reg = <0x74>;
-
-				i2c@1 {
-					#address-cells = <1>;
-					#size-cells = <0>;
-					reg = <1>;
-
-					avt_camera_0@3c {
-						compatible = "alliedvision,avt3";
-
-						reg = <0x3c>;
-						csi_id = <0>;
-
-						/* powerdown-gpios = <&axi_gpio_0 0 GPIO_ACTIVE_LOW>;
-						reset-gpios = <&axi_gpio_0 4 GPIO_ACTIVE_LOW>; */
-						
-						bcrm_wait_timeout = <5000>; /*<4000>;*/
-						mipi_csi;
-						status = "okay";
-
-						streamon_delay = <100>; 
-						x_force_reset_on_init;
-						
-						avt-ignore-yuv420_8_leg_avail;
-						avt-ignore-yuv420_8_avail;
-						avt-ignore-yuv420_10_avail;
-						avt-ignore-yuv420_8_csps_avail;
-						avt-ignore-yuv420_10_csps_avail;
-						x_avt-ignore-yuv422_8_avail;
-						avt-ignore-yuv422_10_avail;
-						avt-ignore-rgb888_avail;
-						avt-ignore-rgb666_avail;
-						avt-ignore-rgb565_avail;
-						avt-ignore-rgb555_avail;
-						avt-ignore-rgb444_avail;
-						avt-ignore-raw6_avail;
-						avt-ignore-raw7_avail;
-						avt-ignore-raw8_avail;
-						avt-ignore-raw10_avail;
-						avt-ignore-raw12_avail;
-						avt-ignore-raw14_avail;
-
-						port {
-							sensor_out_0: endpoint {
-								remote-endpoint = <&mipi_csi_inmipi_csi2rxss_0>;
-								data-lanes = <1 2 3 4>;
-								clock-lanes = <0>;
-								link-frequencies = /bits/ 64 <750000000>;
-							};
-						};
-					};
-				};
 			};
 		};
 	};
