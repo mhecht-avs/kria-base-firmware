@@ -155,6 +155,7 @@
 			axi_iic_pmod: i2c@80020000 {
 				#address-cells = <1>;
 				#size-cells = <0>;
+				status = "disabled";
 				clock-names = "s_axi_aclk";
 				clocks = <&zynqmp_clk 71>;
 				compatible = "xlnx,axi-iic-2.1", "xlnx,xps-iic-2.00.a";
@@ -251,9 +252,14 @@
 						xlnx,cfa-pattern = "rggb";
 						xlnx,video-format = <12>;
 						xlnx,video-width = <8>;
-						mipi_csirx_outmipi_csi2rxss_0: endpoint {
-							remote-endpoint = <&v_frmbuf_wr_csi_0mipi_csi2rxss_0>;
+						direction = "input";
+						mipi_csi_inmipi_csi2rxss_0: endpoint {
+							data-lanes = <1 2 3 4>;
+							remote-endpoint = <&sensor_out_0>;
 						};
+/*						mipi_csirx_outmipi_csi2rxss_0: endpoint {
+							remote-endpoint = <&v_frmbuf_wr_csi_0mipi_csi2rxss_0>;
+						};*/
 					};
 					mipi_csi_port1mipi_csi2rxss_0: port@1 {
 						/* Fill cfa-pattern=rggb for raw data types, other fields video-format,video-width user needs to fill */
@@ -262,7 +268,9 @@
 						xlnx,cfa-pattern = "rggb";
 						xlnx,video-format = <12>;
 						xlnx,video-width = <8>;
-						mipi_csi_inmipi_csi2rxss_0: endpoint {
+						direction = "output";
+						mipi_csirx_outmipi_csi2rxss_0: endpoint {
+							remote-endpoint = <&v_frmbuf_wr_csi_0mipi_csi2rxss_0>;
 						};
 					};
 				};
