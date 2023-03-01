@@ -216,7 +216,7 @@
 				xlnx,en-rxppi-as-mon = "false";
 				xlnx,en-timeout-regs = "true";
 				xlnx,en-vcx = "false";
-				xlnx,esc-timeout = <0x6400>;
+				xlnx,esc-timeout = <0x6400>;				
 /*				xlnx,exdes-board = "ZCU102";
 				xlnx,exdes-config = "MIPI_Video_Pipe_Camera_to_Display";
 				xlnx,exdes-fmc = "LI-IMX274MIPI-FMC V1.0 Single Sensor";*/
@@ -299,6 +299,7 @@
 				xlnx,s-axi-ctrl-data-width = <0x20>;
 				xlnx,vid-formats = "uyvy", "y8", "yuyv";
 				xlnx,video-width = <8>;
+				/*dma-coherent;*/
 			};
 			vcap_mipi_csi2rxss_0 {
 				compatible = "xlnx,video";
