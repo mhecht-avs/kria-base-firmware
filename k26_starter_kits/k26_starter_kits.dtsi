@@ -299,6 +299,7 @@
 				xlnx,s-axi-ctrl-data-width = <0x20>;
 				xlnx,vid-formats = "uyvy", "y8", "yuyv";
 				xlnx,video-width = <8>;
+				dma-coherent;
 			};
 			vcap_mipi_csi2rxss_0 {
 				compatible = "xlnx,video";
