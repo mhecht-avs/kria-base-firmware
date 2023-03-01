@@ -302,6 +302,7 @@
 				compatible = "xlnx,video";
 				dma-names = "port0";
 				dmas = <&v_frmbuf_wr_csi_0 0>;
+				dma-coherent;				
 				vcap_portsmipi_csi2rxss_0: ports {
 					#address-cells = <1>;
 					#size-cells = <0>;
