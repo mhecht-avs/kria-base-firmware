@@ -257,9 +257,6 @@
 							data-lanes = <1 2 3 4>;
 							remote-endpoint = <&sensor_out_0>;
 						};
-/*						mipi_csirx_outmipi_csi2rxss_0: endpoint {
-							remote-endpoint = <&v_frmbuf_wr_csi_0mipi_csi2rxss_0>;
-						};*/
 					};
 					mipi_csi_port1mipi_csi2rxss_0: port@1 {
 						/* Fill cfa-pattern=rggb for raw data types, other fields video-format,video-width user needs to fill */
